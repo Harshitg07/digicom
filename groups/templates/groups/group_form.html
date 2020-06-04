@@ -1,0 +1,15 @@
+{% extends "groups/group_base.html" %}
+
+{% block group_content %}
+
+<div class="col-8 mt-3">
+    <form action="" method="POST">
+        <h3>Create A Group</h3>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary w-100 mt-3">Create</button>
+    </form>
+</div>
+{% include 'message.html' %}
+
+{% endblock group_content %}

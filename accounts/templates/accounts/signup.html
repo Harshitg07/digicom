@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col-8">
+        <h3 class="mt-3">Sign Up</h3>
+        <form class="mb-5" action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        </form>
+    </div>
+    {% include 'message.html' %}
+</div>
+{% endblock content %}

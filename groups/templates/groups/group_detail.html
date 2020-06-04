@@ -1,0 +1,43 @@
+{% extends "groups/group_base.html" %}
+
+
+{% block group_content %}
+<div class="col-4">
+    <h1>{{ group.name }}</h1>
+    <p class="text-muted">{{ group.description }}</p>
+    <h4><b>Members : {{ group.members.count }}</b></h4>
+
+    {% if user.is_authenticated %}
+    <div class="mt-3">
+
+        {% for i in is_there %}
+        {% if i.username == user.username %}
+        <a href="" class="btn btn-sm btn-primary">Leave</a>
+        <a href="{% url 'groups:update' group.pk %}" class="btn btn-sm btn-primary">Update</a>
+        <a href="{% url 'groups:delete' group.slug %}" class="btn btn-sm btn-danger">Delete</a>
+
+        {% endif %}
+        {% empty %}
+        <a href="{% url 'groups:join' group.pk %}" class="btn btn-sm btn-primary">Join</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<div class="col-8">
+    <ul class="list-group">
+
+        {% for post in post_list %}
+        <li class="list-group-item">
+            <p class="text-muted">
+                {{ post.message }}
+            </p>
+            <b><a href="">@{{ post.user }}</a></b>
+            in <b><a href="">{{ post.created_at }}</a></b>
+        </li>
+        {% empty %}
+        <h3><b>No Posts yet!</b></h3>
+        {% endfor %}
+
+    </ul>
+</div>
+{% endblock group_content %}
